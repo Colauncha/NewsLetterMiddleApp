@@ -5,7 +5,9 @@ export default async function SubscriberHandler(req, res) {
   const limit = parseInt(req.query.limit, 10) || 20;
   const baseUrl = process.env.NEWSLETTER_SUBSCRIBER_URL;
 
-    console.log(req.headers.host);
+  console.log(req.ip);
+  console.log(req.socket?.remoteAddress);
+  console.log(req.headers['x-forwarded-for']);
 
   if (req.headers['x-clientname'] === undefined) {
     return res.status(403).json({ error: 'Not Authorized' });
