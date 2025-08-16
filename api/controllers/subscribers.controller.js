@@ -7,6 +7,7 @@ export default async function SubscriberHandler(req, res) {
 
   console.log(req.ip);
   console.log(req.socket?.remoteAddress);
+  console.log(req.headers);
   console.log(req.headers['x-forwarded-for']);
 
   if (req.headers['x-clientname'] === undefined) {
