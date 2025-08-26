@@ -9,6 +9,8 @@ import {
   UniqueVisitors,
   UniqueVisitorsCount,
   AddVisitor,
+  NUVisitorsCount,
+  AddNUVisitor,
 } from '../controllers/tracking.controller.js';
 
 const router = express.Router();
@@ -19,11 +21,13 @@ router.get('/client', clientHandler);
 router.get('/export-csv', ECSVHandler);
 router.get('/subscribers', SubscriberHandler);
 router.get('/tracking/visitors/count', VisitorsCount);
+router.get('/tracking/nu/visitors/count', NUVisitorsCount);
 router.get('/tracking/visitors/unique', UniqueVisitors);
 router.get('/tracking/visitors/unique/count', UniqueVisitorsCount);
 
 // POST routes
 router.post('/tracking/visitors', AddVisitor);
+router.post('/tracking/nu/visitors', AddNUVisitor);
 router.post('/renew-token', RenewTokenHandler);
 router.post('/subscribers', CreateSubscriberHandler);
 
