@@ -170,6 +170,33 @@ async function NUVisitorsCount(req, res) {
   }
 }
 
+async function VisitorsCountRange(req, res) {
+  const startDate = req.query.start;
+  const endDate = req.query.end;
+  const baseUrl = process.env.TRACKING_APP_URL;
+
+  if (req.headers['x-clientname'] === undefined) {
+    return res.status(403).json({ error: 'Not Authorized' });
+  }
+  const tokenKey = `${req.headers['x-clientname']}_NEWS_LETTER_TOKEN`;
+  const token = process.env[tokenKey];
+
+  try {
+    const response = await fetch(
+      `${baseUrl}/visitors/count/range?start_date=${startDate}&end_date=${endDate}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const data = await response.json();
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
 export {
   AddVisitor,
   VisitorsCount,
@@ -177,4 +204,5 @@ export {
   UniqueVisitors,
   NUVisitorsCount,
   AddNUVisitor,
+  VisitorsCountRange,
 };

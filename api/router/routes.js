@@ -11,6 +11,7 @@ import {
   AddVisitor,
   NUVisitorsCount,
   AddNUVisitor,
+  VisitorsCountRange,
 } from '../controllers/tracking.controller.js';
 
 const router = express.Router();
@@ -24,6 +25,7 @@ router.get('/tracking/visitors/count', VisitorsCount);
 router.get('/tracking/nu/visitors/count', NUVisitorsCount);
 router.get('/tracking/visitors/unique', UniqueVisitors);
 router.get('/tracking/visitors/unique/count', UniqueVisitorsCount);
+router.get('/tracking/visitors/count/range', VisitorsCountRange);
 
 // POST routes
 router.post('/tracking/visitors', AddVisitor);
